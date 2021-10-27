@@ -2,6 +2,15 @@ const express = require("express");
 
 const app = express();
 
+app.use(express.static('public'));
+
+const myLogger = (req, res, next) => {
+    console.log("Middleware Log 1");
+    next();
+}
+
+app.use(myLogger);
+
 app.get("/", (req, res) => {
     const photo = {
         id: 1,
